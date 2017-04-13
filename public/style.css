@@ -1,0 +1,169 @@
+html {
+  font-size: 20px;
+}
+
+body {
+  background-color: #191824;
+  font-family: 'Open Sans', sans-serif;
+  color: #fff;
+  padding-bottom: 50px;
+}
+
+.picker-btn,
+.saved-movies span {
+  cursor: pointer;
+}
+
+#container {
+  width: 90%;
+  margin: 0 auto;
+}
+
+.menu {
+  text-align: center;
+  margin-top: 100px;
+}
+
+.logo {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 50px;
+}
+
+select {
+  width: 100%;
+  height: 50px;
+  background-color: #191824;
+  border: #fff 2px solid;
+  margin-bottom: 20px;
+}
+
+.picker-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+  height: 80px;
+  padding: 10px;
+  background-color: #fff;
+  color: #191824;
+  border-radius: 15px;
+  font-size: 1.5rem;
+}
+
+.picker-btn span {
+  padding-right: 5px;
+}
+
+img {
+  margin: 0 auto;
+}
+
+h2 {
+  font-size: 2rem;
+}
+
+.time,
+.rating {
+  font-size: 1.3rem;
+  font-weight: 300;
+}
+
+.glyphicon-star {
+  vertical-align: middle;
+  margin-top: -0.125em;
+}
+
+a, a:hover {
+  color: #fff;
+  text-decoration: underline;
+}
+
+.btn {
+  background-color: #fff;
+  color: #191824;
+  margin-bottom: 10px;
+}
+
+.saved-movies > div{
+  max-width: 500px;
+  margin: 0 auto;
+  margin-bottom: 20px;
+  position: relative;
+}
+
+.saved-movies span {
+  color: #a2a1af;
+  font-size: 1.5rem;
+  position: absolute;
+  top: -15px;
+  right: 0px;
+}
+
+/*Full Size*/
+
+@media (min-width: 800px) {
+  #constainer {
+    width: 100%;
+  }
+
+  .menu,
+  .movie {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .menu {
+    justify-content: space-around;
+    align-items: center;
+    margin-bottom: 50px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 600px;
+  }
+
+  .logo {
+    margin: 0;
+    margin-top: -10px;
+  }
+
+  select {
+    width: 120px;
+    padding-left: 5px;
+  }
+
+  .picker-btn {
+    width: 300px;
+    margin: 0 auto;
+  }
+
+  .movie {
+    margin: 0 auto;
+    width: 800px;
+  }
+
+  .poster {
+    width: 350px;
+  }
+  .details {
+    width: 430px;
+  }
+
+  h2 {
+    margin-top: 0;
+    line-height: 1.5rem;
+  }
+}
+
+/*Ratings Colors*/
+
+.good {
+    color: #009E3D;
+}
+
+.okay {
+    color: #D4A200;
+}
+
+.bad {
+   color: #D40000;
+}

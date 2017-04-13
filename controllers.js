@@ -36,7 +36,7 @@ module.exports = {
       })
       .then(response => axios.get(`http://www.omdbapi.com/?i=${response.data.imdb_id}&plot=full`))
       .then(response => {
-        const {Title, Year, Runtime, Genre, Actors, Plot, Language, Country, imdbRating} = response.data;
+        const {Title, Year, Runtime, Genre, Actors, Plot, Language, Country, imdbRating, imdbID} = response.data;
 
         const movie = Object.assign(movieDetails, {
           title: Title,
@@ -47,7 +47,8 @@ module.exports = {
           plot: Plot,
           language: Language,
           country: Country,
-          imdbRating
+          imdbRating,
+          imdbID
         });
 
         res.send(movie);
