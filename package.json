@@ -50,9 +50,6 @@
           "overrides": {
             "if": {
               "after": false
-            },
-            "else": {
-              "after": false
             }
           }
         }

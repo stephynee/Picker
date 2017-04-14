@@ -1,4 +1,6 @@
 import React, {Component} from 'react';
+import {connect} from 'react-redux';
+import {setQuery} from '../actions';
 
 class Nav extends Component {
   buildSelect(category, arr) {
@@ -6,11 +8,32 @@ class Nav extends Component {
     const selectClass = category.toLowerCase().replace(' ', '-');
 
     return (
-      <select className={selectClass}>
-        <option defaultValue>{category}</option>
+      <select className={selectClass} onChange={ e => {this.setQuery(category, e.target.value)}}>
+        <option defaultValue value="">{category}</option>
         {options}
       </select>
     );
+  }
+
+  setQuery(key, value) {
+    const props = {};
+
+    if(value === '2010 - Present') {
+      props.year1 = '2010-01-01';
+      props.year2 = `${new Date().getFullYear()}-01-01`;
+    } else if(key === 'Date' && value) {
+      props.year1 = `${value.substr(0, 4)}-01-01`;
+      props.year2 = `${value.substr(7, 4)}-12-31`;
+    } else if(key === 'Date') {
+      props.year1 = value;
+      props.year2 = value;
+    } else if(key === 'Min Rating') {
+      props.rating = value;
+    } else {
+      props[key.toLowerCase()] = value.toLowerCase();
+    }
+
+    this.props.setQuery(props);
   }
 
   render() {
@@ -29,4 +52,4 @@ class Nav extends Component {
   }
 }
 
-export default Nav;
+export default connect(null, {setQuery})(Nav);
