@@ -1,19 +1,26 @@
 import React, {Component} from 'react';
+import {connect} from 'react-redux';
+
+import {getMovie} from '../actions';
 
 class Main extends Component {
   randomMovie() {
-    console.log();
-    // call action that makes request to movie api using category props
-    // navigate to movie details view
+    this.props.getMovie(this.props.query, this.props.history);
   }
 
   render() {
     return (
-      <div className="picker-btn" onClick={this.randomMovie}>
+      <div className="picker-btn" onClick={this.randomMovie.bind(this)}>
         <span className="glyphicon glyphicon-repeat"></span> Pick a movie
       </div>
     );
   }
 }
 
-export default Main;
+function mapStateToProps({query}) {
+  return {
+    query
+  };
+}
+
+export default connect(mapStateToProps, {getMovie})(Main);

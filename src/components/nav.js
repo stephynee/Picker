@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {setQuery} from '../actions';
+import {Link} from 'react-router-dom';
 
 class Nav extends Component {
   buildSelect(category, arr) {
@@ -16,13 +17,23 @@ class Nav extends Component {
   }
 
   setQuery(key, value) {
-    // set query state, formatted to send to API
-    this.props.setQuery({
-      genre: key === 'Genre' ? value.toLowerCase() : '',
-      rating: key === 'Min Rating' ? value : '',
-      year1: key === 'Date' && value ? `${value.substr(0, 4)}-01-01` : '',
-      year2: key === 'Date' && value ? `${value.substr(7, 4)}-12-31` : ''
-    });
+    // set query state, formatted to send to api
+    const props = {};
+
+    if(key === 'Genre') {
+      props.genre = value;
+    }
+
+    if(key === 'Min Rating') {
+      props.rating = value;
+    }
+
+    if(key === 'Date') {
+      props.year1 = value ? `${value.substr(0, 4)}-01-01` : '';
+      props.year2 = value ? `${value.substr(7, 4)}-12-31` : '';
+    }
+
+    this.props.setQuery(props);
   }
 
   render() {
@@ -32,7 +43,7 @@ class Nav extends Component {
 
     return (
       <div className="menu">
-        <h1 className="logo">picker</h1>
+        <Link className="logo" to="/"><h1>picker</h1></Link>
         {this.buildSelect('Genre', genres)}
         {this.buildSelect('Date', dates)}
         {this.buildSelect('Min Rating', ratings)}
