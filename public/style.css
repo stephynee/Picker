@@ -109,6 +109,13 @@ a, a:hover {
   right: 0px;
 }
 
+.save {
+  margin-right: 5px;
+}
+
+.error {
+  text-align: center;
+}
 /*Full Size*/
 
 @media (min-width: 800px) {
@@ -160,7 +167,6 @@ a, a:hover {
 
   h2 {
     margin-top: 0;
-    line-height: 1.5rem;
   }
 }
 
