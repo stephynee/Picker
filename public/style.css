@@ -116,6 +116,10 @@ a, a:hover {
 .error {
   text-align: center;
 }
+
+.save-btn {
+  text-decoration: none !important;
+}
 /*Full Size*/
 
 @media (min-width: 800px) {

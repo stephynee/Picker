@@ -2,6 +2,8 @@ import axios from 'axios';
 
 export const SET_QUERY = 'SET_QUERY';
 export const SET_MOVIE = 'SET_MOVIE';
+export const SAVE_MOVIE = 'SAVE_MOVIE';
+export const REMOVE_MOVIE = 'REMOVE_MOVIE';
 
 export function setQuery(props) {
   return {
@@ -25,5 +27,19 @@ export function getMovie(props, history) {
           history.push('/movie');
         }
       });
+  };
+}
+
+export function saveMovie(posterPath) {
+  return {
+    type: SAVE_MOVIE,
+    payload: posterPath
+  };
+}
+
+export function removeMovie(movie) {
+  return {
+    type: REMOVE_MOVIE,
+    payload: movie
   };
 }

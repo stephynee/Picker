@@ -9,7 +9,14 @@ import reducers from './reducers';
 import App from './components/app';
 
 const createStoreFromMiddleware = applyMiddleware(reduxThunk)(createStore);
-const store = createStoreFromMiddleware(reducers);
+const localStorageState = {
+  savedMovies: localStorage.getItem('savedMovies') ? JSON.parse(localStorage.getItem('savedMovies')) : []
+};
+const store = createStoreFromMiddleware(reducers, localStorageState);
+
+store.subscribe(() => {
+  localStorage.setItem('savedMovies', JSON.stringify(store.getState().savedMovies));
+});
 
 ReactDOM.render(
   <Provider store={store}>

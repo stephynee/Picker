@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 
-import {getMovie} from '../actions';
+import {getMovie, saveMovie} from '../actions';
 
 class MovieDetails extends Component {
   randomMovie() {
@@ -26,6 +26,10 @@ class MovieDetails extends Component {
     return 'bad';
   }
 
+  saveMovie(posterPath) {
+    this.props.saveMovie(posterPath);
+  }
+
   render() {
     const {movie} = this.props;
 
@@ -47,7 +51,7 @@ class MovieDetails extends Component {
             <span className={`rating ${this.getRatingColor(movie.tmdbRating)}`}><span className="glyphicon glyphicon-star"></span> {movie.tmdbRating}</span>
           </p>
           <div>
-            <div className="btn save">Save</div>
+            <div className="btn save" onClick={() => this.saveMovie(`https://image.tmdb.org/t/p/w500${movie.imagePath}`)}>Save</div>
             <span className="glyphicon glyphicon-repeat btn" onClick={this.randomMovie.bind(this)}></span>
           </div>
           <p>{movie.plot}</p>
@@ -70,4 +74,4 @@ function mapStateToProps({movie, query}) {
   return {movie, query};
 }
 
-export default connect(mapStateToProps, {getMovie})(MovieDetails);
+export default connect(mapStateToProps, {getMovie, saveMovie})(MovieDetails);
