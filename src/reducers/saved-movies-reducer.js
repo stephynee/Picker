@@ -5,7 +5,7 @@ export default function(state = [], action) {
     case SAVE_MOVIE:
       return [action.payload, ...state];
     case REMOVE_MOVIE:
-      return state.filter(movie => movie !== action.payload);
+      return state.filter(movie => movie.posterPath !== action.payload);
     default:
       return state;
   }

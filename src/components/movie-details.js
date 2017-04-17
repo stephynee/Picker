@@ -26,8 +26,8 @@ class MovieDetails extends Component {
     return 'bad';
   }
 
-  saveMovie(posterPath) {
-    this.props.saveMovie(posterPath);
+  saveMovie(posterPath, imdbUrl) {
+    this.props.saveMovie({posterPath, imdbUrl});
   }
 
   render() {
@@ -51,7 +51,7 @@ class MovieDetails extends Component {
             <span className={`rating ${this.getRatingColor(movie.tmdbRating)}`}><span className="glyphicon glyphicon-star"></span> {movie.tmdbRating}</span>
           </p>
           <div>
-            <div className="btn save" onClick={() => this.saveMovie(`https://image.tmdb.org/t/p/w500${movie.imagePath}`)}>Save</div>
+            <div className="btn save" onClick={() => this.saveMovie(`https://image.tmdb.org/t/p/w500${movie.imagePath}`, `http://www.imdb.com/title/${movie.imdbID}`)}>Save</div>
             <span className="glyphicon glyphicon-repeat btn" onClick={this.randomMovie.bind(this)}></span>
           </div>
           <p>{movie.plot}</p>

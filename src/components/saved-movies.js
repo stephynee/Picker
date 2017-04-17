@@ -12,9 +12,9 @@ class SavedMovies extends Component {
 
     return savedMovies.map(movie => {
       return (
-        <div className="col-sm-4 col-md-3" key={movie}>
-          <span className="glyphicon glyphicon-remove-circle" onClick={() => this.removeMovie(movie)}></span>
-          <img className="img-responsive" src={movie}/>
+        <div className="col-sm-4 col-md-3" key={movie.posterPath}>
+          <span className="glyphicon glyphicon-remove-circle" onClick={() => this.removeMovie(movie.posterPath)}></span>
+          <a href={movie.imdbUrl} target="_blank"><img className="img-responsive" src={movie.posterPath}/></a>
         </div>
       );
     });
