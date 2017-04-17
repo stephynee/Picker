@@ -16,6 +16,10 @@ app.get('/', (req, res) => {
 
 app.get('/api/movie', getMovie);
 
+app.get('*', (req, res) => {
+  res.status(404).send('This page does not exist');
+});
+
 app.listen(PORT, () => console.log('Server running on port ', PORT));
 
 module.exports = app;
