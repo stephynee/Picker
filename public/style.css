@@ -64,6 +64,10 @@ select {
   padding-right: 5px;
 }
 
+.movie {
+  transition: opacity 500ms ease-in;
+}
+
 img {
   margin: 0 auto;
 }
@@ -120,7 +124,8 @@ a, a:hover {
 .save-btn {
   text-decoration: none !important;
 }
-/*Full Size*/
+
+/*===Full Size===*/
 
 @media (min-width: 800px) {
   #constainer {
@@ -165,6 +170,7 @@ a, a:hover {
   .poster {
     width: 350px;
   }
+
   .details {
     width: 430px;
   }
@@ -174,7 +180,7 @@ a, a:hover {
   }
 }
 
-/*Ratings Colors*/
+/*===Ratings===*/
 
 .good {
     color: #009E3D;
@@ -186,4 +192,37 @@ a, a:hover {
 
 .bad {
    color: #D40000;
+}
+
+/*===Animations===*/
+
+.fade-appear {
+  opacity: 0;
+}
+
+.fade-appear.fade-appear-active {
+  opacity: 1;
+  transition: opacity 500ms ease-in;
+}
+
+.fade-enter {
+  opacity: 0;
+}
+
+.fade-enter.fade-enter-active {
+  opacity: 1;
+  transition: opacity 500ms ease-in;
+}
+
+.fade-leave {
+  opacity: 1;
+}
+
+.fade-leave.fade-leave-active {
+  opacity: 0;
+  transition: opacity 500ms ease-in;
+}
+
+.fade-start {
+  opacity: 0;
 }

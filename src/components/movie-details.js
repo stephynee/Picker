@@ -1,10 +1,19 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
+import ReactDOM from 'react-dom';
+import CSSTransitionGroup from 'react-transition-group/CSSTransitionGroup';
 
 import {getMovie, saveMovie} from '../actions';
 
 class MovieDetails extends Component {
+  componentDidUpdate() {
+    const el = ReactDOM.findDOMNode(this).children[0];
+    el.classList.remove('fade-start');
+  }
+
   randomMovie() {
+    const el = ReactDOM.findDOMNode(this).children[0];
+    el.classList.add('fade-start');
     this.props.getMovie(this.props.query);
   }
 
@@ -30,14 +39,8 @@ class MovieDetails extends Component {
     this.props.saveMovie({posterPath, imdbUrl});
   }
 
-  render() {
+  renderMovie() {
     const {movie} = this.props;
-
-    this.formatTime('113 min');
-
-    if(Object.keys(movie).length === 0) {
-      return <h2 className="error">No movie found!</h2>;
-    }
 
     return (
       <div className="movie">
@@ -66,6 +69,25 @@ class MovieDetails extends Component {
           <a target="_blank" href={`http://www.imdb.com/title/${movie.imdbID}`}>View on iMDb</a>
         </div>
       </div>
+    );
+  }
+
+  render() {
+    if(Object.keys(this.props.movie).length === 0) {
+      return <h2 className="error">No movie found!</h2>;
+    }
+
+    return (
+      <CSSTransitionGroup
+        transitionAppear={true}
+        transitionAppearTimeout={500}
+        transitionEnterTimeout={500}
+        transitionLeaveTimeout={500}
+        transitionName="fade">
+
+        {this.renderMovie()}
+
+      </CSSTransitionGroup>
     );
   }
 }
