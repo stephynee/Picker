@@ -98,14 +98,14 @@ a, a:hover {
   margin-bottom: 10px;
 }
 
-.saved-movies > div{
+.saved-movie {
   max-width: 500px;
   margin: 0 auto;
   margin-bottom: 20px;
   position: relative;
 }
 
-.saved-movies span {
+.glyphicon-remove-circle {
   color: #a2a1af;
   font-size: 1.5rem;
   position: absolute;

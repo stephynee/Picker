@@ -14226,6 +14226,10 @@ var _reactRedux = __webpack_require__(26);
 
 var _actions = __webpack_require__(19);
 
+var _CSSTransitionGroup = __webpack_require__(285);
+
+var _CSSTransitionGroup2 = _interopRequireDefault(_CSSTransitionGroup);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -14259,7 +14263,7 @@ var SavedMovies = function (_Component) {
       return savedMovies.map(function (movie) {
         return _react2.default.createElement(
           'div',
-          { className: 'col-sm-4 col-md-3', key: movie.posterPath },
+          { className: 'col-sm-4 col-md-3 .save-movie', key: movie.posterPath },
           _react2.default.createElement('span', { className: 'glyphicon glyphicon-remove-circle', onClick: function onClick() {
               return _this2.removeMovie(movie.posterPath);
             } }),
@@ -14285,7 +14289,16 @@ var SavedMovies = function (_Component) {
       return _react2.default.createElement(
         'div',
         { className: 'saved-movies row' },
-        this.renderMovies()
+        _react2.default.createElement(
+          _CSSTransitionGroup2.default,
+          {
+            transitionAppear: true,
+            transitionAppearTimeout: 500,
+            transitionEnterTimeout: 500,
+            transitionLeaveTimeout: 500,
+            transitionName: 'fade' },
+          this.renderMovies()
+        )
       );
     }
   }]);
