@@ -7,8 +7,8 @@ module.exports = {
   getMovie: (req, res) => {
     let movieDetails = {};
     let {year1, year2, rating, genre} = req.query;
-    let baseRating = rating || '&vote_average.gte=4.0';
-    let url = `https://api.themoviedb.org/3/discover/movie?api_key=${tmdbAPIKey}&vote_count.gte=20${baseRating}`;
+    let baseRating = rating || '4.0';
+    let url = `https://api.themoviedb.org/3/discover/movie?api_key=${tmdbAPIKey}&vote_count.gte=20&vote_average.gte=${baseRating}`;
 
     if(genre) {
       url += `&with_genres=${formatGenre(genre)}`;
