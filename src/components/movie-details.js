@@ -4,6 +4,7 @@ import ReactDOM from 'react-dom';
 import CSSTransitionGroup from 'react-transition-group/CSSTransitionGroup';
 
 import {getMovie, saveMovie} from '../actions';
+import {getRatingColor, formatTime} from '../helpers';
 
 class MovieDetails extends Component {
   componentDidUpdate() {
@@ -15,24 +16,6 @@ class MovieDetails extends Component {
     const el = ReactDOM.findDOMNode(this).children[0];
     el.classList.add('fade-start');
     this.props.getMovie(this.props.query);
-  }
-
-  formatTime(runtime) {
-    const minutes = parseInt(runtime.split(' ')[0]);
-    const hours = Math.floor(minutes / 60);
-    const remainingMin = minutes % 60;
-
-    return `${hours} hr ${remainingMin} min`;
-  }
-
-  getRatingColor(rating) {
-    if(rating > 6.9) {
-      return 'good';
-    } else if(rating > 4.9 && rating < 7.0) {
-      return 'okay';
-    }
-
-    return 'bad';
   }
 
   saveMovie(posterPath, imdbUrl) {
@@ -49,9 +32,9 @@ class MovieDetails extends Component {
         </div>
         <div className="details">
           <h2>{movie.title} ({movie.year})</h2>
-          <p className="time">{this.formatTime(movie.runtime)}</p>
+          <p className="time">{formatTime(movie.runtime)}</p>
           <p>
-            <span className={`rating ${this.getRatingColor(movie.tmdbRating)}`}><span className="glyphicon glyphicon-star"></span> {movie.tmdbRating}</span>
+            <span className={`rating ${getRatingColor(movie.tmdbRating)}`}><span className="glyphicon glyphicon-star"></span> {movie.tmdbRating}</span>
           </p>
           <div>
             <div className="btn save" onClick={() => this.saveMovie(`https://image.tmdb.org/t/p/w500${movie.imagePath}`, `http://www.imdb.com/title/${movie.imdbID}`)}>Save</div>
@@ -64,7 +47,7 @@ class MovieDetails extends Component {
           <p><strong>Starring:</strong> {movie.actors}</p>
           <p>{movie.country}, {movie.language}</p>
           <p>
-            iMDb Rating: <span className={`rating ${this.getRatingColor(movie.imdbRating)}`}><span className="glyphicon glyphicon-star"></span> {movie.imdbRating}</span>
+            iMDb Rating: <span className={`rating ${getRatingColor(movie.imdbRating)}`}><span className="glyphicon glyphicon-star"></span> {movie.imdbRating}</span>
           </p>
           <a target="_blank" href={`http://www.imdb.com/title/${movie.imdbID}`}>View on iMDb</a>
         </div>
