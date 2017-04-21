@@ -2,3 +2,5 @@ node_modules
 mockups
 config.js
 public/scss
+src/test
+karma.conf.js
